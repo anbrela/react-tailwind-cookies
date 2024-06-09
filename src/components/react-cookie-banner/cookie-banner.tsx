@@ -52,8 +52,12 @@ export type CookieBannerProps = {
   description: string;
   position: "top" | "bottom";
   hasRejectButton?: boolean;
+  selectedCookies?: string[];
   configureTitle: string;
   configureButtonLabel: string;
+  viewMoreLinkLabel: string;
+  viewMoreLinkPath: string;
+  hasViewMoreLink?: boolean;
   configureDescription: string;
   configureCookiesTitle: string;
   hasConfigureButton?: boolean;
@@ -74,9 +78,13 @@ export const CookieBanner = ({
   rejectButtonLabel,
   configureButtonLabel,
   configureTitle,
+  selectedCookies,
   configureDescription,
   configureCookiesTitle,
   acceptButtonLabel,
+  hasViewMoreLink,
+  viewMoreLinkLabel,
+  viewMoreLinkPath,
   hasAcceptAllButton,
   configurableCookies,
   onAccept,
@@ -97,11 +105,16 @@ export const CookieBanner = ({
 
   const positionStyle = position === "top" ? "top-0" : "bottom-0";
 
+  const acceptAllDefault = () => {
+    setCookie(cookieName, "true", 7);
+    setOpen(false);
+  };
+
   if (!open) return null;
 
   return (
     <div
-      className={`flex min-h-24 px-8 w-full justify-between bg-white border-t border-gray-800 items-center absolute ${positionStyle} ${classNames?.container}`}
+      className={`flex min-h-24 px-8 w-full justify-between bg-white border-t border-gray-800 items-center fixed left-0 ${positionStyle} ${classNames?.container}`}
     >
       <CookieConfigurator
         title={configureTitle}
@@ -114,9 +127,19 @@ export const CookieBanner = ({
         acceptButtonLabel={acceptButtonLabel}
         hasAcceptAllButton={hasAcceptAllButton}
         classNames={classNames?.cookieConfigurator}
-        onAccept={(cookies) => onAccept && onAccept(cookies)}
-        onRejectAll={() => onReject && onReject()}
-        onAcceptAll={() => onAcceptAll && onAcceptAll()}
+        selectedCookies={selectedCookies}
+        onAccept={(cookies) => {
+          acceptAllDefault();
+          onAccept && onAccept(cookies);
+        }}
+        onRejectAll={() => {
+          setOpen(false);
+          onReject && onReject();
+        }}
+        onAcceptAll={() => {
+          acceptAllDefault();
+          onAcceptAll && onAcceptAll();
+        }}
         onClose={() => {
           setConfigureOpen(false);
         }}
@@ -130,12 +153,14 @@ export const CookieBanner = ({
         buttonClassNames={classNames?.buttons}
         hasRejectButton={hasRejectButton}
         acceptButtonLabel={acceptButtonLabel}
+        viewMoreLinkLabel={viewMoreLinkLabel}
+        viewMoreLinkPath={viewMoreLinkPath}
+        hasViewMoreLink={hasViewMoreLink}
         rejectButtonLabel={rejectButtonLabel}
         configureButtonLabel={configureButtonLabel}
         hasConfigureButton={hasConfigureButton}
         onAcept={() => {
-          setCookie(cookieName, "true", 7);
-          setOpen(false);
+          acceptAllDefault();
           onAcceptAll && onAcceptAll();
         }}
         onReject={() => {

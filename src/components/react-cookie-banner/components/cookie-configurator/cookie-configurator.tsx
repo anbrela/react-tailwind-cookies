@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { CookieTitle } from "../cookie-title";
 import { CookieDescription } from "../cookie-description";
 import { cn } from "../../lib";
@@ -35,6 +35,7 @@ type CookieConfiguratorProps = {
   description?: string;
   cookiesTitle?: string;
   hasAcceptAllButton?: boolean;
+  closeOnBackdropClick?: boolean;
   cookies?: string[];
   acceptButtonLabel?: string;
   rejectButtonLabel?: string;
@@ -53,6 +54,7 @@ export const CookieConfigurator = ({
   cookiesTitle,
   selectedCookies,
   title,
+  closeOnBackdropClick = true,
   hasAcceptAllButton = false,
   rejectButtonLabel = "Reject",
   acceptButtonLabel = "Accept",
@@ -63,9 +65,33 @@ export const CookieConfigurator = ({
   open,
   onClose,
 }: CookieConfiguratorProps) => {
+  const element = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (element.current && !element.current.contains(event?.target as Node)) {
+        onClose();
+      }
+    };
+
+    if (closeOnBackdropClick) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open, closeOnBackdropClick]);
+
   const [acceptedCookies, setAcceptedCookies] = useState<string[]>(
     selectedCookies ? [...selectedCookies] : []
   );
+
+  useEffect(() => {
+    if (selectedCookies) {
+      setAcceptedCookies(selectedCookies);
+    }
+  }, [selectedCookies]);
 
   const handleAcceptAll = () => {
     onAcceptAll();
@@ -93,6 +119,7 @@ export const CookieConfigurator = ({
 
   return (
     <div
+      ref={element}
       className={cn(
         `w-screen h-screen fixed top-0 left-0 flex items-center justify-center flex-col z-50 ${classNames?.container}`
       )}
