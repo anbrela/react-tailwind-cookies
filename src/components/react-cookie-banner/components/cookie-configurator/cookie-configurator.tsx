@@ -30,6 +30,7 @@ type CookieConfiguratorProps = {
       };
     };
   };
+  selectedCookies?: string[];
   title: string;
   description?: string;
   cookiesTitle?: string;
@@ -50,6 +51,7 @@ export const CookieConfigurator = ({
   cookies,
   onAcceptAll,
   cookiesTitle,
+  selectedCookies,
   title,
   hasAcceptAllButton = false,
   rejectButtonLabel = "Reject",
@@ -62,7 +64,7 @@ export const CookieConfigurator = ({
   onClose,
 }: CookieConfiguratorProps) => {
   const [acceptedCookies, setAcceptedCookies] = useState<string[]>(
-    cookies ? [...cookies] : []
+    selectedCookies ? [...selectedCookies] : []
   );
 
   const handleAcceptAll = () => {
