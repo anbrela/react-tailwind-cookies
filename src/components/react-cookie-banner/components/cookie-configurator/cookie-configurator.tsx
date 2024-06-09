@@ -61,7 +61,9 @@ export const CookieConfigurator = ({
   open,
   onClose,
 }: CookieConfiguratorProps) => {
-  const [acceptedCookies, setAcceptedCookies] = useState<string[]>([]);
+  const [acceptedCookies, setAcceptedCookies] = useState<string[]>(
+    cookies ? [...cookies] : []
+  );
 
   const handleAcceptAll = () => {
     onAcceptAll();
