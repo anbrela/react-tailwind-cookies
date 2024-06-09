@@ -1,3 +1,8 @@
+
+🚧 **This library is a work in progress.** 🚧
+
+
+
 # React Tailwind Cookies
 
 ![npm](https://img.shields.io/npm/v/react-tailwind-cookies)
@@ -6,7 +11,6 @@
 
 A React component library for handling cookie consent banners, styled with Tailwind CSS.
 
-🚧 **This library is a work in progress.** 🚧
 
 ## Installation
 
