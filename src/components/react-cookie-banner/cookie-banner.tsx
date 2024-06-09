@@ -53,6 +53,7 @@ export type CookieBannerProps = {
   position: "top" | "bottom";
   hasRejectButton?: boolean;
   configureTitle: string;
+  configureButtonLabel: string;
   configureDescription: string;
   configureCookiesTitle: string;
   hasConfigureButton?: boolean;
@@ -71,6 +72,7 @@ export const CookieBanner = ({
   hasRejectButton,
   acceptAllButtonLabel,
   rejectButtonLabel,
+  configureButtonLabel,
   configureTitle,
   configureDescription,
   configureCookiesTitle,
@@ -127,6 +129,9 @@ export const CookieBanner = ({
       <CookieBannerButtons
         buttonClassNames={classNames?.buttons}
         hasRejectButton={hasRejectButton}
+        acceptButtonLabel={acceptButtonLabel}
+        rejectButtonLabel={rejectButtonLabel}
+        configureButtonLabel={configureButtonLabel}
         hasConfigureButton={hasConfigureButton}
         onAcept={() => {
           setCookie(cookieName, "true", 7);

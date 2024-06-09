@@ -4,7 +4,13 @@ import { CookieButton } from "./cookie-button";
 
 type CookieBannerButtonsProps = {
   hasConfigureButton?: boolean;
+  configureButtonLabel?: string;
+  acceptButtonLabel?: string;
+  rejectButtonLabel?: string;
+  viewMoreLinkPath?: string;
+  hasViewMoreLink?: boolean;
   hasRejectButton?: boolean;
+  viewMoreLinkLabel?: string;
   onAcept: () => void;
   onReject: () => void;
   buttonClassNames?: {
@@ -12,6 +18,7 @@ type CookieBannerButtonsProps = {
     accept?: string;
     reject?: string;
     configure?: string;
+    viewMore?: string;
   };
   onConfigure: () => void;
 };
@@ -21,6 +28,12 @@ export const CookieBannerButtons = ({
   hasRejectButton = false,
   onAcept,
   buttonClassNames,
+  hasViewMoreLink,
+  acceptButtonLabel = "Accept",
+  viewMoreLinkLabel = "View more",
+  viewMoreLinkPath,
+  rejectButtonLabel = "Reject",
+  configureButtonLabel = "Configure",
   onReject,
   onConfigure,
 }: CookieBannerButtonsProps) => {
@@ -30,13 +43,23 @@ export const CookieBannerButtons = ({
         `buttons w-2/4 space-x-2 flex justify-end ${buttonClassNames?.container}`
       )}
     >
+      {hasViewMoreLink && (
+        <a
+          href={viewMoreLinkPath}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(`text-xs uppercase ${buttonClassNames?.viewMore}`)}
+        >
+          {viewMoreLinkLabel}
+        </a>
+      )}
       <CookieButton
         visible={hasConfigureButton}
         onClick={onConfigure}
         className={cn(
           `bg-transparent font-semibold uppercase text-xs ${buttonClassNames?.configure}`
         )}
-        label="Configure"
+        label={configureButtonLabel}
       />
       <CookieButton
         visible={hasRejectButton}
@@ -44,7 +67,7 @@ export const CookieBannerButtons = ({
         className={cn(
           `bg-gray-200 uppercase font-semibold text-xs px-4 p-3 ${buttonClassNames?.reject}`
         )}
-        label="Reject"
+        label={rejectButtonLabel}
       />
       <CookieButton
         visible
@@ -52,7 +75,7 @@ export const CookieBannerButtons = ({
         className={cn(
           `uppercase font-semibold text-xs px-4 p-3 bg-black text-white ${buttonClassNames?.accept}`
         )}
-        label="Accept"
+        label={acceptButtonLabel}
       />
     </div>
   );
