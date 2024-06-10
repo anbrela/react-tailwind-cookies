@@ -5,68 +5,7 @@ import { CookieTitle } from "./components/cookie-title";
 import { CookieDescription } from "./components/cookie-description";
 import { CookieConfigurator } from "./components/cookie-configurator/cookie-configurator";
 import { getCookie, setCookie } from "./lib/utils";
-
-export type CookieBannerProps = {
-  cookieName: string;
-  classNames?: {
-    cookieConfigurator: {
-      container?: string;
-      overlay?: string;
-      modal?: {
-        container?: string;
-        title?: string;
-        cookieTitle?: string;
-        description?: string;
-        cookies?: {
-          container?: string;
-          switchClassNames?: {
-            container?: string;
-            label?: string;
-            input?: string;
-          };
-        };
-        buttons: {
-          container?: string;
-          accept?: string;
-          reject?: string;
-          acceptAll?: string;
-        };
-      };
-    };
-    container?: string;
-    banner?: string;
-    message?: string;
-    title: string;
-    description: string;
-    buttons?: {
-      container?: string;
-      accept?: string;
-      reject?: string;
-      configure?: string;
-    };
-  };
-  title: string;
-  acceptButtonLabel?: string;
-  rejectButtonLabel?: string;
-  acceptAllButtonLabel?: string;
-  description: string;
-  position: "top" | "bottom";
-  hasRejectButton?: boolean;
-  selectedCookies?: string[];
-  configureTitle: string;
-  configureButtonLabel: string;
-  viewMoreLinkLabel: string;
-  viewMoreLinkPath: string;
-  hasViewMoreLink?: boolean;
-  configureDescription: string;
-  configureCookiesTitle: string;
-  hasConfigureButton?: boolean;
-  configurableCookies?: string[];
-  hasAcceptAllButton?: boolean;
-  onAccept?: (cookies: string[]) => void;
-  onReject?: () => void;
-  onAcceptAll?: () => void;
-};
+import { CookieBannerProps } from "./components/types";
 
 export const CookieBanner = ({
   cookieName,
