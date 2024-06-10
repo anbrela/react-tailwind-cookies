@@ -10,11 +10,11 @@ A React component library for handling cookie consent banners, styled with Tailw
 
 ## Default look and feel
 
-![Default look and feel](https://github.com/tu_usuario/tu_repositorio/raw/main/images/cookies.png)
+![Default look and feel](https://github.com/anbrela/react-tailwind-cookies/blob/main/images/cookies.png)
 
 ## Configuration
 
-![Configuration](https://github.com/tu_usuario/tu_repositorio/raw/main/images/configuration.png)
+![Configuration](https://github.com/anbrela/react-tailwind-cookies/blob/main/images/configure.png)
 
 ## Installation
 
