@@ -27,8 +27,14 @@ export default {
     commonjs(),
     typescript({ tsconfig: "./tsconfig.json" }),
     postcss({
-      plugins: [tailwindcss, autoprefixer],
-      extract: "dist/globals.css",
+      config: {
+        path: "./postcss.config.js",
+      },
+      extensions: [".css"],
+      minimize: true,
+      inject: {
+        insertAt: "top",
+      },
     }),
   ],
   external: ["react", "react-dom"],
