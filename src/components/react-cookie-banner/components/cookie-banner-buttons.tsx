@@ -40,7 +40,7 @@ export const CookieBannerButtons = ({
   return (
     <div
       className={cn(
-        `buttons w-2/4 space-x-2 flex justify-end ${buttonClassNames?.container}`
+        `buttons w-2/4 space-x-4 flex justify-end items-center  ${buttonClassNames?.container}`
       )}
     >
       {hasViewMoreLink && (

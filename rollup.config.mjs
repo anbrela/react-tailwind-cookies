@@ -27,9 +27,7 @@ export default {
     commonjs(),
     typescript({ tsconfig: "./tsconfig.json" }),
     postcss({
-      config: {
-        path: "./postcss.config.js",
-      },
+      plugins: [tailwindcss(), autoprefixer()],
       extensions: [".css"],
       minimize: true,
       inject: {

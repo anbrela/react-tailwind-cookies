@@ -119,7 +119,6 @@ export const CookieConfigurator = ({
 
   return (
     <div
-      ref={element}
       className={cn(
         `w-screen h-screen fixed top-0 left-0 flex items-center justify-center flex-col z-50 ${classNames?.container}`
       )}
@@ -130,14 +129,33 @@ export const CookieConfigurator = ({
         )}
       />
       <div
+        ref={element}
         className={cn(
-          `w-2/4 h-auto bg-white flex flex-col z-50 p-8 space-y-4 justify-center ${classNames?.modal?.container}`
+          `w-5/6 md:w-2/4 h-auto bg-white flex flex-col z-50 p-8 space-y-4 justify-center ${classNames?.modal?.container}`
         )}
       >
-        <CookieTitle
-          title={title}
-          className={cn(` w-full font-bold ${classNames?.modal?.title}`)}
-        />
+        <div className="w-full flex items-center justify-between pr-3">
+          <CookieTitle
+            title={title}
+            className={cn(` w-5/6 font-bold ${classNames?.modal?.title}`)}
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-4"
+            onClick={onClose}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+
         <CookieDescription
           className={cn(`w-full ${classNames?.modal?.description}`)}
           description={description}

@@ -114,7 +114,7 @@ export const CookieBanner = ({
 
   return (
     <div
-      className={`flex min-h-24 p-8 w-full h-auto flex-col py-4 space-y-4 lg:flex-row justify-between bg-white border-t border-gray-800 items-center fixed left-0 ${positionStyle} ${classNames?.container}`}
+      className={`flex min-h-24 bg-white p-8 w-full h-auto flex-col py-4 space-y-4 lg:flex-row justify-between border-t border-gray-800 items-center fixed left-0 ${positionStyle} ${classNames?.container}`}
     >
       <CookieConfigurator
         title={configureTitle}
