@@ -3,6 +3,10 @@
   "version": "1.4.2",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anbrela/react-tailwind-cookies.git"
+  },
   "scripts": {
     "build": "rollup -c"
   },
